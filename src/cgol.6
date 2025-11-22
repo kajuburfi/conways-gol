@@ -1,0 +1,37 @@
+.TH cgol 6
+.SH NAME
+cgol \- simulate conway's game of life
+.SH USAGE
+.B cgol
+[\fI\,OPTION\/\fR]...
+.SH FLAGS
+.TP
+\fB\-c\fR, \fB\-\-character\fR \fI\,char\/\fR
+character to symbolize alive cell (default: 0)
+.TP
+\fB\-f\fR, \fB\-\-filename\fR \fI\,filepath\/\fR
+filepath for initial state (default: pattern.txt)
+.TP
+\fB\-p\fR, \fB\-\-rand\-prob\fR \fI\,factor\/\fR
+probability factor for randomized cell states (max: 0.1)
+.TP
+\fB\-\-help\fR display this help and exit
+.SH CONTROLS
+.TP
+\fB\,arrow\-keys\fR, \fB\,hjkl\fR \- navigate cursor across screen
+.TP
+\fB\,space\fR \- toggle current cell state
+.TP
+\fB\,p\fR \- play/pause simulation
+.TP
+\fB\,r\fR \- randomize states (based on probability factor)
+.TP
+\fB\,g\fR \- view next generation
+.TP
+\fB\,L\fR \- load from specified file
+.TP
+\fB\,S\fR \- save to specified file
+.TP
+\fB\,q\fR \- quit
+.SH AUTHORS
+Team 'Speed of Light'

@@ -36,7 +36,18 @@ This project is a TUI implementation of the famous Conway's Game of Life.
 - Provide 10-15 sample initial states(as files).
 - If current state is the same as the previous state(nothing changes), then quit.
 
+## Usage
+Read the man-page on a unix-like environment
+```console
+man ./src/cgol.6
+```
+
+## Compiling
+- Compile using the -lncurses flag
+```console
+gcc -lncurses ./src/cgol.c -o cgol
+```
+
 ## Further developments
 - Camera panning
 - Color gradient of dead cells with respect to time.
-
