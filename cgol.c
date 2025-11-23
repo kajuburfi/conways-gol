@@ -1,6 +1,5 @@
 // Conway's Game of Life
 // TODO:
-// - Write --help CLI argument
 // - Make a couple pre-defined states
 
 #include <ncurses.h>
@@ -129,8 +128,7 @@ Cell *step_cells(Cell *head, int rows, int cols) {
         if (is_alive(head, rr, cc)) {
           if (n == 2 || n == 3)
             insert_cell(&new, rr, cc);
-        }
-        else {
+        } else {
           if (n == 3)
             insert_cell(&new, rr, cc);
         }
@@ -215,8 +213,7 @@ void draw_cells(Cell *head, int rows, int cols, int cur_r, int cur_c,
       mvaddch(cur_r, cur_c,
               ACS_BULLET); // Cursor style is different
       attroff(A_REVERSE);
-    }
-    else
+    } else
       mvaddch(cur_r, cur_c,
               ACS_CKBOARD); // Cursor style is different
   }
@@ -258,11 +255,11 @@ int main(int argc, char *argv[]) {
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "--filename") == 0 || strcmp(argv[i], "-f") == 0) {
       filename = argv[++i];
-    }
-    else if (strcmp(argv[i], "--character") == 0 || strcmp(argv[i], "-c") == 0) {
+    } else if (strcmp(argv[i], "--character") == 0 ||
+               strcmp(argv[i], "-c") == 0) {
       cell_char = argv[++i][0];
-    }
-    else if (strcmp(argv[i], "--rand-prob") == 0 || strcmp(argv[i], "-p") == 0) {
+    } else if (strcmp(argv[i], "--rand-prob") == 0 ||
+               strcmp(argv[i], "-p") == 0) {
       rand_prob = (atof(argv[++i]) == 0.0) ? 0.09 : atof(argv[i]);
       if (rand_prob > 0.1) {
         rand_prob = 0.1;
@@ -270,27 +267,26 @@ int main(int argc, char *argv[]) {
                "max.\nPress enter to continue...\n");
         getchar();
       }
-    }
-    else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
-      printf("Usage: cgol [OPTION]...\nSimulate Conway's Game of Life\n\n"
-             "Optional arguments\n  "
-             "-c, --character [char]        character to symbolize alive cell\n  "
-             "-f, --filename [filepath]     filepath for initial state\n  "
-             "-p, --random-prob [factor]    probability factor to randomize states"
-             "\n  -h, --help                    display this text and exit\n\n"
-             "In-game controls\n  "
-             "arrow-keys, hjkl              navigate cursor across screen\n  "
-             "space                         toggle current cell state\n  "
-             "p                             play/pause simulation\n  "
-             "r                             randomize states\n  "
-             "g                             view next generation\n  "
-             "L                             load from specified file\n  "
-             "S                             save to specified file\n  "
-             "q                             quit\n\n");
+    } else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
+      printf(
+          "Usage: cgol [OPTION]...\nSimulate Conway's Game of Life\n\n"
+          "Optional arguments\n  "
+          "-c, --character [char]        character to symbolize alive cell\n  "
+          "-f, --filename [filepath]     filepath for initial state\n  "
+          "-p, --random-prob [factor]    probability factor to randomize states"
+          "\n  -h, --help                    display this text and exit\n\n"
+          "In-game controls\n  "
+          "arrow-keys, hjkl              navigate cursor across screen\n  "
+          "space                         toggle current cell state\n  "
+          "p                             play/pause simulation\n  "
+          "r                             randomize states\n  "
+          "g                             view next generation\n  "
+          "L                             load from specified file\n  "
+          "S                             save to specified file\n  "
+          "q                             quit\n\n");
       exitstatus = 1;
       break;
-    }
-    else {
+    } else {
       printf("Stop it, get some --help\n");
       exitstatus = 1;
       break;
@@ -301,14 +297,14 @@ int main(int argc, char *argv[]) {
     return 0;
 
   // NCurses initialization stuff
-  initscr();            // Starts the screen(window)
-  noecho();             // Doesn't echo key presses on to the terminal screen
-  cbreak();             // Return key press directly to the program
-  keypad(stdscr, TRUE); // Extends keyboard functionality(accepts keypad inputs
-                        // and function keys)
-  curs_set(0);          // Makes the cursor invisible
-  nodelay(stdscr, TRUE);// Do not wait for input into a fuction like getch()
-                        // No input returns ERR
+  initscr();             // Starts the screen(window)
+  noecho();              // Doesn't echo key presses on to the terminal screen
+  cbreak();              // Return key press directly to the program
+  keypad(stdscr, TRUE);  // Extends keyboard functionality(accepts keypad inputs
+                         // and function keys)
+  curs_set(0);           // Makes the cursor invisible
+  nodelay(stdscr, TRUE); // Do not wait for input into a fuction like getch()
+                         // No input returns ERR
 
   int rows, cols;
   getmaxyx(stdscr, rows, cols);
@@ -343,32 +339,25 @@ int main(int argc, char *argv[]) {
           remove_cell(&head, cur_r, cur_c);
         else
           insert_cell(&head, cur_r, cur_c);
-      }
-      else if (ch == 'p') // Play or Pause
+      } else if (ch == 'p') // Play or Pause
         running = !running;
       else if (ch == 'g') { // Go generation step by step
         head = step_cells(head, rows, cols);
         generation++;
-      }
-      else if (ch == 'r') {
+      } else if (ch == 'r') {
         randomize_cells(&head, rows, cols, rand_prob);
         generation = 0;
-      }
-      else if (ch == 'S') {
+      } else if (ch == 'S') {
         save_to_file(head, filename);
-      }
-      else if (ch == 'L') {
+      } else if (ch == 'L') {
         free_cells(head); // Clear screen
         head = load_from_file(filename);
         generation = 0;
-      }
-      else if (ch == '+') {
+      } else if (ch == '+') {
         wait_time -= 10000;
-      }
-      else if (ch == '-') {
+      } else if (ch == '-') {
         wait_time += 10000;
-      }
-      else if (ch == 'q')
+      } else if (ch == 'q')
         break;
     }
 
