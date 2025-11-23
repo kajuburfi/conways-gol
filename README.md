@@ -39,13 +39,13 @@ This project is a TUI implementation of the famous Conway's Game of Life.
 ## Usage
 Read the man-page on a unix-like environment
 ```console
-man ./src/cgol.6
+$ man ./cgol.6
 ```
 
 ## Compiling
 - Compile using the -lncurses flag
 ```console
-gcc -lncurses ./src/cgol.c -o cgol
+$ gcc -lncurses ./src/cgol.c -o cgol
 ```
 
 ## Further developments

@@ -61,7 +61,7 @@ void remove_cell(Cell **head, int r, int c) {
       else
         *head = p->next;
       free(p);
-      return;
+      break;
     }
     prev = p;
     p = p->next;
@@ -129,7 +129,8 @@ Cell *step_cells(Cell *head, int rows, int cols) {
         if (is_alive(head, rr, cc)) {
           if (n == 2 || n == 3)
             insert_cell(&new, rr, cc);
-        } else {
+        }
+        else {
           if (n == 3)
             insert_cell(&new, rr, cc);
         }
@@ -214,7 +215,8 @@ void draw_cells(Cell *head, int rows, int cols, int cur_r, int cur_c,
       mvaddch(cur_r, cur_c,
               ACS_BULLET); // Cursor style is different
       attroff(A_REVERSE);
-    } else
+    }
+    else
       mvaddch(cur_r, cur_c,
               ACS_CKBOARD); // Cursor style is different
   }
@@ -252,14 +254,15 @@ int main(int argc, char *argv[]) {
   char *filename = "pattern.txt";
   float rand_prob = 0.1;
   char cell_char = 'O';
+  int exitstatus = 0;
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "--filename") == 0 || strcmp(argv[i], "-f") == 0) {
       filename = argv[i + 1];
     }
-    if (strcmp(argv[i], "--character") == 0 || strcmp(argv[i], "-c") == 0) {
+    else if (strcmp(argv[i], "--character") == 0 || strcmp(argv[i], "-c") == 0) {
       cell_char = argv[i + 1][0];
     }
-    if (strcmp(argv[i], "--rand-prob") == 0 || strcmp(argv[i], "-p") == 0) {
+    else if (strcmp(argv[i], "--rand-prob") == 0 || strcmp(argv[i], "-p") == 0) {
       rand_prob = (atof(argv[i + 1]) == 0.0) ? 0.09 : atof(argv[i + 1]);
       if (rand_prob > 0.1) {
         rand_prob = 0.1;
@@ -268,6 +271,20 @@ int main(int argc, char *argv[]) {
         getchar();
       }
     }
+    else
+      exitstatus = 1;
+  }
+
+  if (exitstatus) {
+    FILE *fptr = fopen("src/help.txt", "r");
+    if (fptr == NULL)
+      printf("Usage: cgol [OPTIONS]...\n");
+      return 1;
+    char c;
+	while ((c = fgetc(fptr)) != EOF)
+      putchar(c);
+    fclose(fptr);
+    return 0;
   }
 
   // NCurses initialization stuff
@@ -277,7 +294,8 @@ int main(int argc, char *argv[]) {
   keypad(stdscr, TRUE); // Extends keyboard functionality(accepts keypad inputs
                         // and function keys)
   curs_set(0);          // Makes the cursor invisible
-  nodelay(stdscr, TRUE);
+  nodelay(stdscr, TRUE);// Do not wait for input into a fuction like getch()
+                        // No input returns ERR
 
   int rows, cols;
   getmaxyx(stdscr, rows, cols);
@@ -312,25 +330,32 @@ int main(int argc, char *argv[]) {
           remove_cell(&head, cur_r, cur_c);
         else
           insert_cell(&head, cur_r, cur_c);
-      } else if (ch == 'p') // Pause
+      }
+      else if (ch == 'p') // Play or Pause
         running = !running;
       else if (ch == 'g') { // Go generation step by step
         head = step_cells(head, rows, cols);
         generation++;
-      } else if (ch == 'r') {
+      }
+      else if (ch == 'r') {
         randomize_cells(&head, rows, cols, rand_prob);
         generation = 0;
-      } else if (ch == 'S') {
+      }
+      else if (ch == 'S') {
         save_to_file(head, filename);
-      } else if (ch == 'L') {
+      }
+      else if (ch == 'L') {
         free_cells(head); // Clear screen
         head = load_from_file(filename);
         generation = 0;
-      } else if (ch == '+') {
+      }
+      else if (ch == '+') {
         wait_time -= 10000;
-      } else if (ch == '-') {
+      }
+      else if (ch == '-') {
         wait_time += 10000;
-      } else if (ch == 'q')
+      }
+      else if (ch == 'q')
         break;
     }
 
