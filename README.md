@@ -74,6 +74,9 @@ When calling the program, you can also pass CLI flags.
 
 Read the man page for some more info.
 
+## Architecture
+The architecture of this code is briefly mentioned [here](./ARCHITECTURE.md).
+
 ## Credits
 - @kajuburfi
 - @roomroofroot
