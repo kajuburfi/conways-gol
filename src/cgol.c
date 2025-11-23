@@ -271,15 +271,16 @@ int main(int argc, char *argv[]) {
         getchar();
       }
     }
-    else
+    else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0)
       exitstatus = 1;
   }
 
   if (exitstatus) {
     FILE *fptr = fopen("src/help.txt", "r");
-    if (fptr == NULL)
+    if (fptr == NULL) {
       printf("Usage: cgol [OPTIONS]...\n");
       return 1;
+    }
     char c;
 	while ((c = fgetc(fptr)) != EOF)
       putchar(c);
