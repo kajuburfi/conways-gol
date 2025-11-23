@@ -1,53 +1,83 @@
-<h1>Conway's Game of Life</h1>
+<center><h1>Conway's Game of Life</h1></center>
 
 This project is a TUI implementation of the famous Conway's Game of Life.
+
 [Sample Website](https://conwaylife.com/).
 
-## Plan
-- Read the initial state from a file, in `.txt` format.
-- Display the initial state as white blocks on the screen in an `n x m` cartesian grid of cells.
-- Progress to the next generation by following the rules of conway's game of life.
+## How to install
+Pre-requisites: `git` must be installed. `gcc` or any other C compiler must exist.
+`ncurses` should also be there(comes pre-installed in most distributions).
 
-## Implementation
-- File I/O: Taking the initial state as a file in a CLI argument.
-- Linked List: Maintain the coordinates of all alive cells in a singly linked list.
-- Structs: Coordinate of the live cell as a struct.
-- Dynamic memory: Linked list uses dynamic memory allocations.
-- Pointers: Pointers are clearly used in linked lists.
+Clone the repository and move into it
+```sh
+git clone https://github.com/kajuburfi/conways-gol
+cd conways-gol
+```
 
-### Planned logic
-- Make a structure for the position of a live cell.
-- Maintain two linked lists, one for the current state, and one for the previous state.
-- Operations on linked lists(functions):
-  - Add a Node to the linked list.
-  - Delete a node(even from the middle of the linked list); coordinates are unique.
-- Use a TUI library(which one?) for display.
-- Functions to read through the linked list and display it on the terminal.
-- Read `.txt` files as CLI arguments.
+Compile using the `-lncurses` flag
+```sh
+gcc -lncurses cgol.c -o cgol
+```
 
-## Features
-- Run the program with the initial state as a CLI argument(file), and grid size `n x m`.
-- The screen is filled with the current state.
-- Speed up and slow down the animation using arrow keys.
-- Pause and play the animation using spacebar.
-- Move forward or back generation by generation.
-- Limit maximum number of generations after which the program quits.
-- If all cells are dead, automatically quit.
-- Provide 10-15 sample initial states(as files).
-- If current state is the same as the previous state(nothing changes), then quit.
+Read the man-page on a unix-like environment
+```sh
+man ./cgol.6
+```
+
+If you want to be able to run this from anywhere in your system,
+add the executable `cgol` to your `$PATH`. One such place would be,
+```sh
+cp cgol ~/.local/bin/
+```
+To read the `man` page from anywhere, copy the man page `cgol.6` to
+any place that your man pages are stored. For instance(make the directory if not existing),
+```sh
+cp cgol.6 /usr/local/man/man6/
+```
 
 ## Usage
-Read the man-page on a unix-like environment
-```console
-$ man ./cgol.6
+
+The help flag of the program returns this:
+```
+Usage: cgol [OPTION]...
+Simulate a subset of Conway's Game of Life
+
+Optional arguments
+  -c, --character [char]        character to symbolize alive cell
+  -f, --filename [filepath]     filepath for initial state
+  -p, --random-prob [factor]    probability factor to randomize states
+  -h, --help                    display this text and exit
+
+In-game controls
+  arrow-keys, hjkl              navigate cursor across screen
+  space                         toggle current cell state
+  p                             play/pause simulation
+  r                             randomize states
+  g                             view next generation
+  L                             load from specified file
+  S                             save to specified file
+  q                             quit
 ```
 
-## Compiling
-- Compile using the -lncurses flag
-```console
-$ gcc -lncurses ./src/cgol.c -o cgol
-```
+When you run `cgol` or `./cgol`, a new screen is opened(`stdscr`), with a block denoting your cursor position.
+- Initially, the game state is _paused_. 
+- You can move the cursor using `hjkl` or `up`, `down`, `left`, `right` arrow keys.
+- Use the spacebar to change the state of the system(to make a cell live, or to kill it).
+- Use the keys mentioned above to do the respective operations.
 
-## Further developments
-- Camera panning
-- Color gradient of dead cells with respect to time.
+When calling the program, you can also pass CLI flags.
+- By default, the character for a live cell is `O`. However, you can change this using the `--character option.
+- You can pass different filenames in the `--filename` to save the state to those files(press
+  `S`(capital) to save).
+- You can change the density probability by using the `--random-prob` flag. The maximum for this value
+  is `0.1`. Anything above that seriously lags the game, and is thus prohibited.
+
+Read the man page for some more info.
+
+## Credits
+- @kajuburfi
+- @roomroofroot
+- @the-deepak-nayak
+
+## License
+The license for this program is a _slightly_ modified [MIT License](./LICENSE).
