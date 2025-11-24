@@ -18,7 +18,7 @@ cd conways-gol
 
 Compile using the `-lncurses` flag
 ```sh
-gcc -lncurses cgol.c -o cgol
+gcc -o <executable_name> cgol.c -lncurses
 ```
 
 Read the man-page on a unix-like environment
