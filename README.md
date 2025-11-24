@@ -59,8 +59,8 @@ In-game controls
   L                             load from specified file
   S                             save to specified file
   q                             quit
-  +                             increases speed
-  -                             decreases speed
+  +                             increases speed of generation
+  -                             decreases speed of generation
 ```
 
 When you run `cgol` or `./cgol`, a new screen is opened(`stdscr`), with a block denoting your cursor position.
