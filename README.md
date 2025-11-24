@@ -95,9 +95,9 @@ Check out a couple of patterns in [`patterns/`](./PATTERN.md). Try them out in y
 The architecture of this code is briefly mentioned [here](./ARCHITECTURE.md).
 
 ## Credits
-- @kajuburfi
-- @roomroofroot
-- @the-deepak-nayak
+- [@kajuburfi](https://github.com/kajuburfi)
+- [@roomroofroot](https://github.com/roomroofroot)
+- [@the-deepak-nayak](https://github.com/the-deepak-nayak)
 
 ## License
 The license for this program is a _slightly_ modified [MIT License](./LICENSE).
