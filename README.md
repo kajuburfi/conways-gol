@@ -1,6 +1,8 @@
 <center><h1>Conway's Game of Life</h1></center>
 
 This project is a TUI implementation of the famous Conway's Game of Life.
+It is not exactly Conway's Game of Life, since it is wrapped around at the borders, thus
+making it a toroidal space. This would not make it a turing-complete machine(unfortunately).
 
 [Sample Website](https://conwaylife.com/).
 
