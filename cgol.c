@@ -281,11 +281,11 @@ int main(int argc, char *argv[]) {
           "p                             play/pause simulation\n  "
           "r                             randomize states\n  "
           "g                             view next generation\n  "
+          "+                             increase speed of generation\n  "
+          "-                             decrease speed of generation\n  "
           "L                             load from specified file\n  "
           "S                             save to specified file\n  "
-          "q                             quit\n"
-          "  +				increases the speed of generation\n"
-          "  -				decreases the speed of generation\n");
+          "q                             quit\n");
       exitstatus = 1;
       break;
     } else {
