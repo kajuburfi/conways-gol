@@ -67,7 +67,7 @@ In-game controls
   r                             randomize states
   g                             view next generation
   + or =                        increases speed of generation
-  -                             decreases speed of generation
+  - or _                        decreases speed of generation
   L                             load from specified file
   S                             save to specified file
   q                             quit

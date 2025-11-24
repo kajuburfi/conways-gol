@@ -34,4 +34,6 @@ After creating an executable file, say `cgol`, use the following command to use 
 - `spaceship` - Generates a spaceship.
 - `swan` - Generates a flying swan.
 
-
+```sh
+Highly recommended ones are samurai, copperhead, butterfly and period_135_oscillator.
+```

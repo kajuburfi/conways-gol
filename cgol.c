@@ -282,7 +282,7 @@ int main(int argc, char *argv[]) {
           "r                             randomize states\n  "
           "g                             view next generation\n  "
           "+ or =                        increase speed of generation\n  "
-          "-                             decrease speed of generation\n  "
+          "- or _                        decrease speed of generation\n  "
           "L                             load from specified file\n  "
           "S                             save to specified file\n  "
           "q                             quit\n");
@@ -363,7 +363,7 @@ int main(int argc, char *argv[]) {
         generation = 0;
       } else if (ch == '+' || ch == '=') {
         wait_time -= 10000;
-      } else if (ch == '-') {
+      } else if (ch == '-' || ch == '_') {
         wait_time += 10000;
       } else if (ch == 'q')
         break;
