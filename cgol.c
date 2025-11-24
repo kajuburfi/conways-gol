@@ -281,7 +281,7 @@ int main(int argc, char *argv[]) {
           "p                             play/pause simulation\n  "
           "r                             randomize states\n  "
           "g                             view next generation\n  "
-          "+                             increase speed of generation\n  "
+          "+ or =                        increase speed of generation\n  "
           "-                             decrease speed of generation\n  "
           "L                             load from specified file\n  "
           "S                             save to specified file\n  "
@@ -328,10 +328,6 @@ int main(int argc, char *argv[]) {
   }
 
   while (1) {
-    if (running && head == NULL) {
-      running = !running;
-    }
-
     int ch = getch();
     if (ch != ERR) {
       // Move if and only if not running
@@ -353,7 +349,7 @@ int main(int argc, char *argv[]) {
           insert_cell(&head, cur_r, cur_c);
       } else if (ch == 'p') // Play or Pause
         running = !running;
-      else if (ch == 'g') { // Go generation step by step
+      else if (ch == 'g' && !running) { // Go generation step by step
         head = step_cells(head, rows, cols);
         generation++;
       } else if (ch == 'r') {
@@ -365,7 +361,7 @@ int main(int argc, char *argv[]) {
         free_cells(head); // Clear screen
         head = load_from_file(filename);
         generation = 0;
-      } else if (ch == '+') {
+      } else if (ch == '+' || ch == '=') {
         wait_time -= 10000;
       } else if (ch == '-') {
         wait_time += 10000;
@@ -381,6 +377,9 @@ int main(int argc, char *argv[]) {
       head = step_cells(head, rows, cols);
       generation++;
       usleep(wait_time);
+      if (head == NULL) {
+        running = !running;
+      }
     }
 
     draw_cells(head, rows, cols, cur_r, cur_c, running, generation, wait_time,

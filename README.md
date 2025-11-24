@@ -78,6 +78,9 @@ When calling the program, you can also pass CLI flags.
 
 Read the man page for some more info.
 
+*Pre-made patterns*:
+Check out a couple of patterns in [`patterns/`](./PATTERN.md). Try them out in your terminal.
+
 ## Architecture
 The architecture of this code is briefly mentioned [here](./ARCHITECTURE.md).
 
