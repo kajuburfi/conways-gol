@@ -310,7 +310,7 @@ int main(int argc, char *argv[]) {
 
   int rows, cols;
   getmaxyx(stdscr, rows, cols);
-  rows--; // Reduce a row for the status bar
+  rows -= 2; // Reduce 2 rows for the status bar
 
   Cell *head = NULL; // Empty linked list
   // Center the cursor initially
