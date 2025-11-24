@@ -285,11 +285,13 @@ int main(int argc, char *argv[]) {
           "g                             view next generation\n  "
           "L                             load from specified file\n  "
           "S                             save to specified file\n  "
-          "q                             quit\n\n");
+          "q                             quit\n"
+	  "+				 increases the speed of generating the next generation"
+	  "-				 decreases the speed of generating the next generation");
       exitstatus = 1;
       break;
     } else {
-      printf("Stop it, get some --help\n(Just kidding.. Wrong command. Use brain or --help)\n");
+      printf("Stop it, get some --help\n");
       exitstatus = 1;
       break;
     }
