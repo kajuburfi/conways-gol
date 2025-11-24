@@ -6,9 +6,9 @@ making it a toroidal space. This would not make it a turing-complete machine(unf
 
 [Sample Website](https://conwaylife.com/).
 
-## How to install
-Pre-requisites: `git` must be installed. `gcc` or any other C compiler must exist.
-`ncurses` should also be there(comes pre-installed in most distributions).
+## Compiling
+Pre-requisites: `make` must be installed. `gcc` or any other C99 compiler must exist.
+`ncurses` should be installed, along with -devel package (depending on distribution).
 
 Clone the repository and move into it
 ```sh
@@ -16,28 +16,38 @@ git clone https://github.com/kajuburfi/conways-gol
 cd conways-gol
 ```
 
-Compile using the `-lncurses` flag
+Compile using make
 ```sh
-gcc -o <executable_name> cgol.c -lncurses
+make
 ```
 
-Read the man-page on a unix-like environment
+To clean the directory (delete binaries)
 ```sh
-man ./cgol.6
+make clean
 ```
 
-If you want to be able to run this from anywhere in your system,
-add the executable `cgol` to your `$PATH`. One such place would be,
+## Installation
+Once compiled successfully, run the following (super-user access required)
 ```sh
-cp cgol ~/.local/bin/
+sudo make install
 ```
-To read the `man` page from anywhere, copy the man page `cgol.6` to
-any place that your man pages are stored. For instance(make the directory if not existing),
+
+In the sad, unfortunate situation that you want to uninstall this program, run
 ```sh
-cp cgol.6 /usr/local/man/man6/
+sudo make uninstall && rm -rf ~/*
 ```
 
 ## Usage
+
+Read the man-page on a unix-like environment
+- If installed
+```sh
+man cgol
+```
+- Else
+```sh
+man ./cgol.6
+```
 
 The help flag of the program returns this:
 ```
@@ -56,11 +66,11 @@ In-game controls
   p                             play/pause simulation
   r                             randomize states
   g                             view next generation
+  + or =                        increases speed of generation
+  -                             decreases speed of generation
   L                             load from specified file
   S                             save to specified file
   q                             quit
-  +                             increases speed of generation
-  -                             decreases speed of generation
 ```
 
 When you run `cgol` or `./cgol`, a new screen is opened(`stdscr`), with a block denoting your cursor position.
