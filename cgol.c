@@ -289,7 +289,7 @@ int main(int argc, char *argv[]) {
       exitstatus = 1;
       break;
     } else {
-      printf("Stop it, get some --help\n(Just kidding.. Wrong command. Use brain or --help)\n");
+      printf("Stop it, get some --help\nJust kidding.. Wrong command. Use brain or --help\n");
       exitstatus = 1;
       break;
     }
