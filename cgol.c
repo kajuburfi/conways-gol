@@ -1,6 +1,4 @@
 // Conway's Game of Life
-// TODO:
-// - Make a couple pre-defined states
 
 #include <ncurses.h>
 #include <stdio.h>
@@ -286,8 +284,8 @@ int main(int argc, char *argv[]) {
           "L                             load from specified file\n  "
           "S                             save to specified file\n  "
           "q                             quit\n"
-	  "  +				increases the speed of generation\n"
-	  "  -				decreases the speed of generation\n");
+          "  +				increases the speed of generation\n"
+          "  -				decreases the speed of generation\n");
       exitstatus = 1;
       break;
     } else {
@@ -330,6 +328,10 @@ int main(int argc, char *argv[]) {
   }
 
   while (1) {
+    if (running && head == NULL) {
+      running = !running;
+    }
+
     int ch = getch();
     if (ch != ERR) {
       // Move if and only if not running
