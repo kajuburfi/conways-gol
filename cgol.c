@@ -249,12 +249,14 @@ void randomize_cells(Cell **head, int rows, int cols, double prob) {
 int main(int argc, char *argv[]) {
 
   char *filename = "pattern.txt";
+  int file_provided = 0;
   float rand_prob = 0.1;
   char cell_char = 'O';
   int exitstatus = 0;
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "--filename") == 0 || strcmp(argv[i], "-f") == 0) {
       filename = argv[++i];
+      file_provided = 1;
     } else if (strcmp(argv[i], "--character") == 0 ||
                strcmp(argv[i], "-c") == 0) {
       cell_char = argv[++i][0];
@@ -318,6 +320,12 @@ int main(int argc, char *argv[]) {
   int running = 0;        // Initially not running
   int wait_time = 100000; // In microseconds (=0.1s)
   long generation = 0;
+
+  if (file_provided) {
+    free_cells(head); // Clear screen
+    head = load_from_file(filename);
+    generation = 0;
+  }
 
   while (1) {
     int ch = getch();
