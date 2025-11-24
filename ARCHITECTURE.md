@@ -22,11 +22,11 @@ The filesystem is split as follows:
 From here on, I'll explain the codebase.
 
 The libraries we use are
-- `ncurses`: For the TUI part(mostly in `main()` and related). 
-- `stdio`: For standard printing
-- `stdlib`: For `malloc()`, `rand()`, `free()`, `atof()`.
-- `string`: For `strcmp()` in the CLI arguments.
-- `unistd`: For `usleep()` between generations.
+- `ncurses.h`: For the TUI part(mostly in `main()` and related). 
+- `stdio.h`: For standard printing
+- `stdlib.h`: For `malloc()`, `rand()`, `free()`, `atof()`.
+- `string.h`: For `strcmp()` in the CLI arguments.
+- `unistd.h`: For `usleep()` between generations.
 
 The one and only structure we use is `Cell`, which is a node for a linked list, along with
 containing the `r`(row) and `c`(column) where it is alive.

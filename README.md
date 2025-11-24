@@ -66,7 +66,7 @@ When you run `cgol` or `./cgol`, a new screen is opened(`stdscr`), with a block 
 - Use the keys mentioned above to do the respective operations.
 
 When calling the program, you can also pass CLI flags.
-- By default, the character for a live cell is `O`. However, you can change this using the `--character option.
+- By default, the character for a live cell is `O`. However, you can change this using the `--character` option.
 - You can pass different filenames in the `--filename` to save the state to those files(press
   `S`(capital) to save).
 - You can change the density probability by using the `--random-prob` flag. The maximum for this value
