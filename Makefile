@@ -6,7 +6,7 @@ CFLAGS += -lncurses
 all: cgol
 
 cgol:
-	$(CC) $(CFLAGS) cgol.c -o cgol
+	$(CC) cgol.c -o cgol $(CFLAGS) 
 
 install: cgol
 	mkdir -p $(PREFIX)/bin
