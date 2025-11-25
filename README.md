@@ -4,6 +4,10 @@ This project is a TUI implementation of the famous Conway's Game of Life.
 It is not exactly Conway's Game of Life, since it is wrapped around at the borders, thus
 making it a toroidal space. This would not make it a turing-complete machine(unfortunately).
 
+This is tested on a Linux machine, and is thus made to run only on a Linux/Unix style machine.
+It need not work on Windows machines due to filesystem complications(It might compile, but
+`wsl` or linux is preferred).
+
 [Sample Website](https://conwaylife.com/).
 
 ## Compiling
