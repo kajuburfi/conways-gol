@@ -36,6 +36,9 @@ We maintain a linked list of all live cells, and iterate over it to display.
 Here are all the functions written in `cgol.c` and the documentation comments mentioned above them
 (as in the code).
 ```c
+/************* the-deepak-nayak ****************/
+/* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
+
 // @function: Iterates through the linked list and checks if the cell exists.
 // @params:
 // head: Head of the linked list.
@@ -70,6 +73,12 @@ void remove_cell(Cell **head, int r, int c);
 // @returns: void
 void free_cells(Cell *head);
 
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+/************* the-deepak-nayak ****************/
+
+
+/************* roomroofroot ****************/
+/* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
 
 // @function: Count the neighbors of a given cell.
 // @params:
@@ -105,6 +114,11 @@ void save_to_file(Cell *head, char *fname);
 // @returns: The linked list which contains the new state.
 Cell *load_from_file(char *fname);
 
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+/************* roomroofroot ****************/
+
+/************* kajuburfi ****************/
+/* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
 
 // @function: Draws the cells onto the screen(stdscr)
 // @params:
@@ -136,4 +150,7 @@ void randomize_cells(Cell **head, int rows, int cols, double prob);
 
 // Main function
 int main(int argc, int *argv[]);
+
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+/************* kajuburfi ****************/
 ```
